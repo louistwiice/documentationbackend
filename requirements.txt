@@ -1,0 +1,16 @@
+django==3.2
+djangorestframework==3.14.0
+gunicorn==20.1.0
+sentry-sdk
+django-extensions
+psycopg2-binary==2.9.5
+django-structlog
+django-environ
+drf-yasg==1.21.5
+swagger_spec_validator==3.0.3
+django-cors-headers==3.14.0
+djangorestframework-simplejwt[crypto]
+pytest-django==4.5.2
+model_bakery==1.10.1
+pytest-mock==3.10.0
+django_mock_queries==2.1.7

@@ -1,0 +1,43 @@
+version: "3.4"
+
+services:
+
+  documentation:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: documentation-v2
+    hostname: doc-v2
+    ports:
+      - 3000:8000
+    volumes:
+      - ./src:/home/wizall/src
+      - static_files:/home/wizall/src/static/
+    env_file:
+      - ./.envs/.env.app
+      - ./.envs/.env.postgres
+
+  postgres:
+    image: postgres:alpine
+    container_name: doc-v2-db
+    hostname: doc-v2-db
+    volumes:
+      - ./data-db:/var/lib/postgresql/data/
+    env_file:
+      - ./.envs/.env.postgres
+    ports:
+      - 5432
+
+  nginx:
+    restart: unless-stopped
+    image: nginx:1.23-alpine
+    ports:
+      - "80:80"
+    links:
+      - documentation
+    volumes:
+      - ./compose/nginx/conf.d:/etc/nginx/conf.d
+      - static_files:/home/wizall/src/static/
+
+volumes:
+  static_files:

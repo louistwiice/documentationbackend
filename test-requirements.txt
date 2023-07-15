@@ -1,0 +1,6 @@
+-r base-requirements.txt
+
+pytest-django==4.5.2
+model_bakery==1.10.1
+pytest-mock==3.10.0
+django_mock_queries==2.1.7
